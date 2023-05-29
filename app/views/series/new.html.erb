@@ -1,0 +1,22 @@
+<h1>Create a new Series</h1>
+
+<%= form_with scopee: :serie, url: new_series_path, local: true do |f|%>
+    <p>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </p>
+
+    <p>
+        <%= f.label :synopsis %><br/>
+        <%= f.text_area :synopsis %>
+    </p>
+
+    <p>
+        <%= f.label :director %><br/>
+        <%= f.text_field :director %>
+    </p>
+
+    <p>
+        <% f.submit %>
+    </p>
+<% end %>

@@ -4,6 +4,14 @@ class SeriesController < ApplicationController
     end
 
     def index
-        @series = Movie.all
+        @series = Series.all
+    end
+
+    def new
+        
+    end
+
+    def create
+        
     end
 end
