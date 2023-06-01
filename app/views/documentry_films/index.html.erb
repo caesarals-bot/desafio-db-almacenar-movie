@@ -1,0 +1,20 @@
+<h1>Movies listing page</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Synopsis</th>
+            <th>Director</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @documentryfilms.each do |documentry|%>
+        <tr>
+            <td><%= documentry.name%></td>
+            <td><%= documentry.synopsis%></td>
+            <td><%= documentry.director%></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

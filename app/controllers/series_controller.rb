@@ -14,7 +14,7 @@ class SeriesController < ApplicationController
     def create
         @serie = Serie.new(params.require(:serie).permit(:name, :synopsis, :director))
         if @serie.save
-            flash[:notice] = "serie was created successfully."
+            flash[:notice] = "Serie was created successfully."
             redirect_to @serie
         else
             render :new, status: 422

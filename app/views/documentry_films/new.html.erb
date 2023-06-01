@@ -1,0 +1,31 @@
+<h1>Create a new Document</h1>
+
+<% if @documentryfilm.errors.any? %>
+    <h2>The following errors prevented the movie from being saved</h2>
+    <ul>
+        <% @documentryfilm.errors.full_messages.each do |msg|%>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with scope: :documentryfilm, url: documentry_films_path, local: true do |f|%>
+    <p>
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </p>
+
+    <p>
+        <%= f.label :synopsis %><br/>
+        <%= f.text_area :synopsis %>
+    </p>
+
+    <p>
+        <%= f.label :director %><br/>
+        <%= f.text_field :director %>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
