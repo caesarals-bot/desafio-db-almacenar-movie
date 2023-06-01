@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
             flash[:notice] = "movie was created successfully."
             redirect_to @movie
         else
-            render 'new'
+            render :new, status: 422
         end
     end
 end
