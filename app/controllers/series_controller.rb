@@ -4,14 +4,20 @@ class SeriesController < ApplicationController
     end
 
     def index
-        @series = Series.all
+        @series = Serie.all
     end
 
     def new
-        
+        @serie = Movie.new
     end
 
     def create
-        
+        @serie = Serie.new(params.require(:serie).permit(:name, :synopsis, :director))
+        if @serie.save
+            flash[:notice] = "serie was created successfully."
+            redirect_to @serie
+        else
+            render :new, status: 422
+        end
     end
 end

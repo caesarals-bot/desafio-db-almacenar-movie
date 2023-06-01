@@ -1,6 +1,15 @@
-<h1>Create a new Series</h1>
+<h1>Create a new Movie</h1>
 
-<%= form_with scopee: :serie, url: new_series_path, local: true do |f|%>
+<% if @serie.errors.any? %>
+    <h2>The following errors prevented the movie from being saved</h2>
+    <ul>
+        <% @serie.errors.full_messages.each do |msg|%>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with scope: :serie, url: series_index_path, local: true do |f|%>
     <p>
         <%= f.label :name %><br/>
         <%= f.text_field :name %>
@@ -17,6 +26,6 @@
     </p>
 
     <p>
-        <% f.submit %>
+        <%= f.submit %>
     </p>
 <% end %>
