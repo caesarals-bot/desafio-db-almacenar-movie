@@ -1,15 +1,15 @@
-<h1>Create a new Document</h1>
+<h1>Edit Serie</h1>
 
-<% if @documentryfilm.errors.any? %>
-    <h2>The following errors prevented the Documentary from being saved</h2>
+<% if @serie.errors.any? %>
+    <h2>The following errors prevented the movie from being saved</h2>
     <ul>
-        <% @documentryfilm.errors.full_messages.each do |msg|%>
+        <% @serie.errors.full_messages.each do |msg|%>
             <li><%= msg %></li>
         <% end %>
     </ul>
 <% end %>
 
-<%= form_with scope: :documentryfilm, url: documentry_films_path, local: true do |f|%>
+<%= form_with(model: @serie, local: true) do |f|%>
     <p>
         <%= f.label :name %><br/>
         <%= f.text_field :name %>

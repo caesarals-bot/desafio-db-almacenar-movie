@@ -12,6 +12,10 @@ class MoviesController < ApplicationController
         @movie = Movie.new
     end
 
+    def edit
+        @movie = Movie.find(params[:id])
+    end
+
     def create
         @movie = Movie.new(params.require(:movie).permit(:name, :synopsis, :director))
         if @movie.save
@@ -19,6 +23,16 @@ class MoviesController < ApplicationController
             redirect_to @movie
         else
             render :new, status: 422
+        end
+    end
+
+    def update
+        @movie = Movie.find(params[:id])
+        if @movie.update(params.require(:movie).permit(:name, :synopsis, :director))
+            flash[:notice] = "Movie was update successfully"
+            redirect_to @movie
+        else
+            render 'edit'
         end
     end
 end

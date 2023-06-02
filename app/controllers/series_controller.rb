@@ -8,7 +8,11 @@ class SeriesController < ApplicationController
     end
 
     def new
-        @serie = Movie.new
+        @serie = Serie.new
+    end
+
+    def edit
+        @serie = Serie.find(params[:id])
     end
 
     def create
@@ -18,6 +22,16 @@ class SeriesController < ApplicationController
             redirect_to @serie
         else
             render :new, status: 422
+        end
+    end
+
+    def update
+        @serie =Serie.find(params[:id])
+        if @serie.update(params.require(:serie).permit(:name, :synopsis, :director))
+            flash[:notice] = "Movie was update successfully"
+            redirect_to @serie
+        else
+            render 'edit'
         end
     end
 end
