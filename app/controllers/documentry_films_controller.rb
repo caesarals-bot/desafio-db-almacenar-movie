@@ -1,6 +1,6 @@
 class DocumentryFilmsController < ApplicationController
+    before_action :set_documentary, only: [:show, :edit, :update, :destroy]
     def show
-        @documentryfilm = DocumentryFilm.find(params[:id])
     end
 
     def index
@@ -12,11 +12,10 @@ class DocumentryFilmsController < ApplicationController
     end
 
     def edit
-        @documentryfilm = DocumentryFilm.find(params[:id])
     end
 
     def create
-        @documentryfilm = DocumentryFilm.new(params.require(:documentryfilm).permit(:name, :synopsis, :director))
+        @documentryfilm = DocumentryFilm.new(documentary_params)
         if @documentryfilm.save
             flash[:notice] = "Documentary was created successfully."
             redirect_to @documentryfilm
@@ -26,8 +25,7 @@ class DocumentryFilmsController < ApplicationController
     end
 
     def update
-        @documentryfilm = DocumentryFilm.find(params[:id])
-        if @documentryfilm.update(params.require(:documentryfilm).permit(:name, :synopsis, :director))
+        if @documentryfilm.update(documentary_params)
             flash[:notice] = "Documentary was update successfully"
             redirect_to @documentryfilm
         else
@@ -36,8 +34,17 @@ class DocumentryFilmsController < ApplicationController
     end
 
     def destroy
-        @documentryfilm = DocumentryFilm.find(params[:id])
         @documentryfilm.destroy
         redirect_to documentry_films_path
+    end
+
+    # refactorizamos el codigo con el metodo set_documentary y documentaryparams
+    private
+    def set_documentary
+        @documentryfilm = DocumentryFilm.find(params[:id])
+    end
+
+    def documentary_params
+        params.require(:documentryfilm).permit(:name, :synopsis, :director)
     end
 end

@@ -1,6 +1,7 @@
 class SeriesController < ApplicationController
+    before_action :set_serie, only: [:show, :edit, :update, :destroy]
+    
     def show
-        @serie = Serie.find(params[:id])
     end
 
     def index
@@ -12,11 +13,10 @@ class SeriesController < ApplicationController
     end
 
     def edit
-        @serie = Serie.find(params[:id])
     end
 
     def create
-        @serie = Serie.new(params.require(:serie).permit(:name, :synopsis, :director))
+        @serie = Serie.new(serie_params)
         if @serie.save
             flash[:notice] = "Serie was created successfully."
             redirect_to @serie
@@ -26,8 +26,7 @@ class SeriesController < ApplicationController
     end
 
     def update
-        @serie =Serie.find(params[:id])
-        if @serie.update(params.require(:serie).permit(:name, :synopsis, :director))
+        if @serie.update(serie_params)
             flash[:notice] = "Movie was update successfully"
             redirect_to @serie
         else
@@ -36,8 +35,16 @@ class SeriesController < ApplicationController
     end
 
     def destroy
-        @serie = Serie.find(params[:id])
         @serie.destroy
         redirect_to series_index_path
+    end
+    # refactorizamos el codigo con el metodo set_movie
+    private
+    def set_serie
+        @serie = Serie.find(params[:id])
+    end
+
+    def serie_params
+        params.require(:serie).permit(:name, :synopsis, :director)
     end
 end

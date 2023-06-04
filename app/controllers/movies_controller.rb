@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
-    
+    before_action :set_movie, only: [:show, :edit, :update, :destroy]
     def show
-        @movie = Movie.find(params[:id])
     end
 
     def index
@@ -13,11 +12,10 @@ class MoviesController < ApplicationController
     end
 
     def edit
-        @movie = Movie.find(params[:id])
     end
 
     def create
-        @movie = Movie.new(params.require(:movie).permit(:name, :synopsis, :director))
+        @movie = Movie.new(movie_params)
         if @movie.save
             flash[:notice] = "movie was created successfully."
             redirect_to @movie
@@ -27,8 +25,7 @@ class MoviesController < ApplicationController
     end
 
     def update
-        @movie = Movie.find(params[:id])
-        if @movie.update(params.require(:movie).permit(:name, :synopsis, :director))
+        if @movie.update(movie_params)
             flash[:notice] = "Movie was update successfully"
             redirect_to @movie
         else
@@ -37,8 +34,16 @@ class MoviesController < ApplicationController
     end
 
     def destroy
-        @movie = Movie.find(params[:id])
         @movie.destroy
         redirect_to movies_path
+    end
+    # refactorizamos el codigo con el metodo set_movie
+    private
+    def set_movie
+        @movie = Movie.find(params[:id])
+    end
+
+    def movie_params
+        params.require(:movie).permit(:name, :synopsis, :director)
     end
 end
