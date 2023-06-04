@@ -34,4 +34,10 @@ class DocumentryFilmsController < ApplicationController
             render 'edit'
         end
     end
+
+    def destroy
+        @documentryfilm = DocumentryFilm.find(params[:id])
+        @documentryfilm.destroy
+        redirect_to documentry_films_path
+    end
 end

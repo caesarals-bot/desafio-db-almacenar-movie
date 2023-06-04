@@ -6,6 +6,7 @@
             <th>Name</th>
             <th>Synopsis</th>
             <th>Director</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -14,7 +15,13 @@
             <td><%= movie.name%></td>
             <td><%= movie.synopsis%></td>
             <td><%= movie.director%></td>
+            <td><%= link_to 'Show', movie_path(movie)%></td>
+            <td><%= button_to 'Delete', movie_path(movie), method: :delete, data: {confirm: "Are you sure"}  %></td>
+            <td><%= link_to 'Edit', edit_movie_path(movie), method: :update %></td>
         </tr>
         <% end %>
     </tbody>
 </table>
+<p>
+    <%= link_to 'Create new movie', new_movie_path%>
+</p>

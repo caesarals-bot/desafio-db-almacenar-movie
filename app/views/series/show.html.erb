@@ -1,5 +1,10 @@
-<h1>Showing movies details</h1>
+<h1>Showing series details</h1>
 
 <p><strong>Name: </strong><%= @serie.name%></p>
 <p><strong>Synopsis: </strong><%= @serie.synopsis%></p>
 <p><strong>Director: </strong><%= @serie.director%></p>
+
+<%= link_to 'Edit', edit_series_path(@serie)%>
+<%= button_to 'Delete', series_path(@serie), method: :delete, data: {confirm: "Are you sure"} %>
+<%= link_to 'Return to series listing', series_index_path%>
+<%= link_to 'Create new serie', new_series_path%>

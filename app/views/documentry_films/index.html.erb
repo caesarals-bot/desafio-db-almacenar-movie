@@ -1,4 +1,4 @@
-<h1>Movies listing page</h1>
+<h1>Documentary films listing page</h1>
 
 <table>
     <thead>
@@ -14,7 +14,14 @@
             <td><%= documentry.name%></td>
             <td><%= documentry.synopsis%></td>
             <td><%= documentry.director%></td>
+            <td><%= link_to 'Show', documentry_film_path(documentry)%></td>
+            <td><%= button_to 'Delete', documentry_film_path(documentry), method: :delete, data: {confirm: "Are you sure"}  %></td>
+            <td><%= link_to 'Edit', edit_documentry_film_path(documentry), method: :update %></td>
         </tr>
         <% end %>
     </tbody>
 </table>
+<p>
+    <%= link_to 'Create new documentary films', new_documentry_film_path%>
+    
+</p>

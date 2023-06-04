@@ -34,4 +34,10 @@ class SeriesController < ApplicationController
             render 'edit'
         end
     end
+
+    def destroy
+        @serie = Serie.find(params[:id])
+        @serie.destroy
+        redirect_to series_index_path
+    end
 end

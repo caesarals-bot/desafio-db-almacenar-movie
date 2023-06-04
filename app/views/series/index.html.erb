@@ -1,4 +1,4 @@
-<h1>Movies listing page</h1>
+<h1>Series listing page</h1>
 
 <table>
     <thead>
@@ -14,7 +14,13 @@
             <td><%= serie.name%></td>
             <td><%= serie.synopsis%></td>
             <td><%= serie.director%></td>
+             <td><%= link_to 'Show', series_path(serie)%></td>
+            <td><%= button_to 'Delete', series_path(serie), method: :delete, data: {confirm: "Are you sure"}  %></td>
+            <td><%= link_to 'Edit', edit_series_path(serie), method: :update %></td>
         </tr>
         <% end %>
     </tbody>
 </table>
+<p>
+    <%= link_to 'Create new serie', new_series_path%>
+</p>

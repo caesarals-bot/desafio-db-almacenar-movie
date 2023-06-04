@@ -3,3 +3,8 @@
 <p><strong>Name: </strong><%= @movie.name%></p>
 <p><strong>Synopsis: </strong><%= @movie.synopsis%></p>
 <p><strong>Director: </strong><%= @movie.director%></p>
+
+<%= link_to 'Edit', edit_movie_path(@movie)%>
+<%= button_to 'Delete', movie_path(@movie), method: :delete, data: {confirm: "Are you sure"} %>
+<%= link_to 'Return to movies listing', movies_path%>
+<%= link_to 'Create new article', new_movie_path%>

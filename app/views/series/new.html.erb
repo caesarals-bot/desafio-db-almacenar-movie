@@ -1,4 +1,4 @@
-<h1>Create a new Movie</h1>
+<h1>Create a new Serie</h1>
 
 <% if @serie.errors.any? %>
     <h2>The following errors prevented the movie from being saved</h2>
@@ -29,3 +29,4 @@
         <%= f.submit %>
     </p>
 <% end %>
+<%= link_to 'Return to series listing', series_index_path%>
